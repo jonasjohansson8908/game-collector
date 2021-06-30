@@ -2,11 +2,25 @@ package Items;
 
 import Items.Properties.Platform;
 
-// TODO check this class. Only copy/pasted from Game
-
 public class Console extends CollectorItem{
-    public String title;
-    public Platform platform;
+    private String title;
+    private Platform platform;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Platform getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(Platform platform) {
+        this.platform = platform;
+    }
 
     public static class Builder extends CollectorItem.Builder<Builder> {
 

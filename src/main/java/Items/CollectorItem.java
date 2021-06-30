@@ -1,22 +1,20 @@
 package Items;
 
-import Items.Properties.Platform;
 import Items.Properties.Region;
 import Items.Properties.Types;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 public abstract class CollectorItem implements Serializable{
 
     private String sortingTitle;
     private double purchasePrice;
-    private Platform platform;
     private Types type;
     private String description;
     private Region region;
-    private Date purchaseDate;
-    private Date releaseDate;
+    private LocalDate purchaseDate;
+    private LocalDate releaseDate;
 
     public String getSortingTitle() {
         return sortingTitle;
@@ -32,14 +30,6 @@ public abstract class CollectorItem implements Serializable{
 
     public void setPurchasePrice(double purchasePrice) {
         this.purchasePrice = purchasePrice;
-    }
-
-    public Platform getPlatform() {
-        return platform;
-    }
-
-    public void setPlatform(Platform platform) {
-        this.platform = platform;
     }
 
     public Types getType() {
@@ -66,19 +56,19 @@ public abstract class CollectorItem implements Serializable{
         this.region = region;
     }
 
-    public Date getPurchaseDate() {
+    public LocalDate getPurchaseDate() {
         return purchaseDate;
     }
 
-    public void setPurchaseDate(Date purchaseDate) {
+    public void setPurchaseDate(LocalDate purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -95,11 +85,10 @@ public abstract class CollectorItem implements Serializable{
 
         String sortingTitle;
         double purchasePrice = 0.0;
-        Platform platform;
         String description = "";
         Region region;
-        Date purchaseDate;
-        Date releaseDate;
+        LocalDate purchaseDate;
+        LocalDate releaseDate;
 
         // optional
         double price = 0.0;
@@ -124,12 +113,12 @@ public abstract class CollectorItem implements Serializable{
             return self();
         }
 
-        public T purchaseDate(Date date) {
+        public T purchaseDate(LocalDate date) {
             this.purchaseDate = date;
             return self();
         }
 
-        public T releaseDate(Date date) {
+        public T releaseDate(LocalDate date) {
             this.releaseDate = date;
             return self();
         }

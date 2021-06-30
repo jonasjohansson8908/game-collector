@@ -2,11 +2,54 @@ package Items;
 
 import Items.Properties.Platform;
 
+import java.time.LocalDate;
+
 public class Game extends CollectorItem{
-    public String title;
-    public Platform platform;
-    String genre;
-    boolean completed;
+    private String title;
+    private Platform platform;
+    private String genre;
+    private boolean completed;
+    private LocalDate completedDate;
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Platform getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(Platform platform) {
+        this.platform = platform;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public boolean isCompleted() {
+        return this.completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    public LocalDate getCompletedDate() {
+        return completedDate;
+    }
+
+    public void setCompletedDate(LocalDate completedDate) {
+        this.completedDate = completedDate;
+    }
 
     public static class Builder extends CollectorItem.Builder<Builder> {
 
@@ -15,6 +58,7 @@ public class Game extends CollectorItem{
 
         private String genre;
         private boolean completed = false;
+        private LocalDate completedDate;
 
         public Builder genre(String genre) {
             this.genre = genre;
@@ -23,6 +67,11 @@ public class Game extends CollectorItem{
 
         public Builder completed(boolean completed) {
             this.completed = completed;
+            return self();
+        }
+
+        public Builder completedDate(LocalDate completedDate) {
+            this.completedDate = completedDate;
             return self();
         }
 
@@ -45,13 +94,6 @@ public class Game extends CollectorItem{
         platform = builder.platform;
         genre = builder.genre;
         completed = builder.completed;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public boolean getCompleted() {
-        return this.completed;
+        completedDate = builder.completedDate;
     }
 }
