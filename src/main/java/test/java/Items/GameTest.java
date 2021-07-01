@@ -1,5 +1,7 @@
-package Items;
+package test.java.Items;
 
+import Items.Collection;
+import Items.Game;
 import Items.Properties.Platform;
 import org.junit.jupiter.api.*;
 
