@@ -83,12 +83,26 @@ public class GameTest {
      * Create a game and set completed to true through the builder. Check that property "completed" can be modified.
      */
     @Test
-    void testCompletedChange() {
+    void testCompletedChangeFalse() {
         Game castlevania = new Game.Builder("Castlevania", Platform.NES)
                 .completed(true)
                 .build();
         castlevania.setCompleted(false);
         Assertions.assertFalse(castlevania.isCompleted());
+    }
+
+    /**
+     * Create a game and set completedDate through the builder. The date should not be persisted when setting the
+     * completed property to true.
+     */
+    @Test
+    void testCompletedChangeTrue() {
+        Game castlevania = new Game.Builder("Castlevania", Platform.NES)
+                .completedDate(2020, 2, 19)
+                .build();
+        castlevania.setCompleted(true);
+        Assertions.assertTrue(castlevania.isCompleted());
+        Assertions.assertEquals("2020-02-19", castlevania.getCompletedDate().toString());
     }
 
     /**
