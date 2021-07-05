@@ -39,17 +39,27 @@ public class Game extends CollectorItem{
         return this.completed;
     }
 
+    // TODO documentation
+
+    /**
+     * Resets completedDate if completed is set to false.
+     * @param completed
+     */
     public void setCompleted(boolean completed) {
         this.completed = completed;
+
+        // reset completedDate when game is no longer completed.
+        if (!completed)
+            this.completedDate = null;
     }
 
     public LocalDate getCompletedDate() {
         return completedDate;
     }
 
-    public void setCompletedDate(LocalDate completedDate) {
-        this.completedDate = completedDate;
-    }
+    public void setCompletedDate(int year, int month, int day) {
+        this.completedDate = LocalDate.of(year, month, day);
+        }
 
     public static class Builder extends CollectorItem.Builder<Builder> {
 
@@ -70,8 +80,8 @@ public class Game extends CollectorItem{
             return self();
         }
 
-        public Builder completedDate(LocalDate completedDate) {
-            this.completedDate = completedDate;
+        public Builder completedDate(int year, int month, int day) {
+            this.completedDate = LocalDate.of(year, month, day);
             return self();
         }
 
