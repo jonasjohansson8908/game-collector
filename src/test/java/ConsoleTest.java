@@ -42,4 +42,58 @@ public class ConsoleTest {
         genesis.setPlatform(Platform.GENESIS);
         Assertions.assertEquals(Platform.GENESIS, genesis.getPlatform());
     }
+
+    /**
+     * Create a GameConsole and add a modification through the builder. Check if the mod is persisted.
+     */
+    @Test
+    void testSingleModBuilder() {
+        GameConsole pcEngine = new GameConsole.Builder("PC Engine Duo R", Platform.PC_ENGINE)
+                .mods("RGB-mod")
+                .build();
+        Assertions.assertEquals("RGB-mod", pcEngine.getMods().get(0));
+    }
+
+    /**
+     * Create a GameConsole and add multiple modifications through the builder. Check if the mods are persisted.
+     */
+    @Test
+    void testMultipleModsBuilder() {
+        GameConsole pcEngine = new GameConsole.Builder("PC Engine Duo R", Platform.PC_ENGINE)
+                .mods("RGB-mod", "Recap", "ODE")
+                .build();
+        Assertions.assertEquals("[RGB-mod, Recap, ODE]", pcEngine.getMods().toString());
+    }
+
+    /**
+     * Create a GameConsole and add a single modification through the add method.
+     */
+    @Test
+    void testSingleModChange() {
+        GameConsole pcEngine = new GameConsole.Builder("PC Engine Duo R", Platform.PC_ENGINE).build();
+        pcEngine.addMods("Region mod");
+        Assertions.assertEquals("Region mod", pcEngine.getMods().get(0));
+    }
+
+    /**
+     * Create a GameConsole and add a multiple modifications through the add method.
+     */
+    @Test
+    void testMultipleModsChange() {
+        GameConsole pcEngine = new GameConsole.Builder("PC Engine Duo R", Platform.PC_ENGINE).build();
+        pcEngine.addMods("Region mod", "Added fan", "HDMI mod");
+        Assertions.assertEquals("[Region mod, Added fan, HDMI mod]", pcEngine.getMods().toString());
+    }
+
+    /**
+     * Create a GameConsole and remove the modification of a given index from the modifications list.
+     */
+    @Test
+    void testModRemove() {
+        GameConsole pcEngine = new GameConsole.Builder("PC Engine Duo R", Platform.PC_ENGINE)
+                .mods("Region mod", "Added fan", "HDMI mod")
+                .build();
+        pcEngine.removeMod(1);
+        Assertions.assertEquals("[Region mod, HDMI mod]", pcEngine.getMods().toString());
+    }
 }

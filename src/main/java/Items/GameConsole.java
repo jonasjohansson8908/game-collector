@@ -2,9 +2,13 @@ package Items;
 
 import Items.Properties.Platform;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class GameConsole extends CollectorItem{
     private String title;
     private Platform platform;
+    private final ArrayList<String> mods;
 
     public String getTitle() {
         return title;
@@ -22,14 +26,32 @@ public class GameConsole extends CollectorItem{
         this.platform = platform;
     }
 
+    public ArrayList<String> getMods() {
+        return mods;
+    }
+
+    public void removeMod(int index) {
+        mods.remove(index);
+    }
+
+    public void addMods(String... mods) { this.mods.addAll(Arrays.asList(mods)); }
+
     public static class Builder extends CollectorItem.Builder<Builder> {
 
         private final String title;
         private final Platform platform;
 
+        private final ArrayList<String> mods; // Console modifications, such as RGB mod.
+
         public Builder(String title, Platform platform) {
             this.title = title;
             this.platform = platform;
+            this.mods = new ArrayList<>();
+        }
+
+        public GameConsole.Builder mods(String... mods) {
+            this.mods.addAll(Arrays.asList(mods));
+            return self();
         }
 
         @Override public GameConsole build() {
@@ -44,5 +66,6 @@ public class GameConsole extends CollectorItem{
         super(builder);
         title = builder.title;
         platform = builder.platform;
+        mods = builder.mods;
     }
 }
