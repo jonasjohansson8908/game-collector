@@ -2,7 +2,7 @@ package Items;
 
 import Items.Properties.Platform;
 
-public class Console extends CollectorItem{
+public class GameConsole extends CollectorItem{
     private String title;
     private Platform platform;
 
@@ -32,15 +32,15 @@ public class Console extends CollectorItem{
             this.platform = platform;
         }
 
-        @Override public Console build() {
-            return new Console(this);
+        @Override public GameConsole build() {
+            return new GameConsole(this);
         }
 
         @Override protected Builder self() { return this; }
 
     }
 
-    private Console(Builder builder) {
+    private GameConsole(Builder builder) {
         super(builder);
         title = builder.title;
         platform = builder.platform;

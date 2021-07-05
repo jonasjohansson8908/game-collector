@@ -1,9 +1,7 @@
-
-
-import Items.Collection;
 import Items.Game;
 import Items.Properties.Platform;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class GameTest {
 
@@ -50,13 +48,11 @@ public class GameTest {
      */
     @Test
     void testGenreChange() {
-        Collection collection = new Collection();
         Game castlevania = new Game.Builder("Castlevania", Platform.NES)
                 .genre("Platformer")
                 .build();
-        collection.add(castlevania);
-        collection.getGames().get(0).setGenre("Whipping platformer");
-        Assertions.assertEquals("Whipping platformer", collection.getGames().get(0).getGenre());
+        castlevania.setGenre("Whipping platformer");
+        Assertions.assertEquals("Whipping platformer", castlevania.getGenre());
     }
 
     /**
